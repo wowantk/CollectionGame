@@ -1,0 +1,6 @@
+framework module Pods_CollectionGame {
+  umbrella header "Pods-CollectionGame-umbrella.h"
+
+  export *
+  module * { export * }
+}
