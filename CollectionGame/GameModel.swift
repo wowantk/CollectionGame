@@ -60,7 +60,7 @@ class PositionInRoom {
 class Box: PositionInRoom {
 }
 
-var box = Box(positionX: 2, positionY: 2)
+var box = Box(positionX: Int.random(in: 1...9), positionY: Int.random(in: 1...9))
 
 let startingBox = Box(positionX: 2, positionY: 2)
 
@@ -70,12 +70,12 @@ let startingBox = Box(positionX: 2, positionY: 2)
 class EndGame: PositionInRoom {
 }
 
-let endGame = EndGame(positionX: 8, positionY: 8)
+var endGame = EndGame(positionX: Int.random(in: 1...9), positionY: Int.random(in: 1...9))
 
 
 
 
-var player = PositionInRoom(positionX: 1, positionY: 1)
+var player = PositionInRoom(positionX: Int.random(in: 1...9), positionY: Int.random(in: 1...9))
 
 let startingPlayer = PositionInRoom(positionX: 1, positionY: 1)
 class Player {
@@ -156,6 +156,8 @@ class Player {
         countOfMoves += 1
         return field
     }
+    
+    
     
 }
 

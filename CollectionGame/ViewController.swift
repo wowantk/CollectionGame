@@ -59,7 +59,10 @@ class ViewController: UIViewController, MethodGame {
     }
     
     @IBAction func newGame(_ sender: Any) {
-        newGameForPerson(pl: startingPlayer, bx: startingBox)
+        let b = Box(positionX: Int.random(in: 1...9), positionY: Int.random(in: 1...9))
+        let p = PositionInRoom(positionX: Int.random(in: 1...9), positionY: Int.random(in: 1...9))
+        let endGame = EndGame(positionX: Int.random(in: 1...9), positionY: Int.random(in: 1...9))
+        newGameForPerson(pl: p, bx: b, tr: endGame)
         
     }
 }
@@ -82,8 +85,8 @@ extension ViewController:UICollectionViewDataSource,UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let c = UICollectionViewCell(frame: .zero)
-//        c.contentView = UILabel(frame: .zero)
+        //        let c = UICollectionViewCell(frame: .zero)
+        //        c.contentView = UILabel(frame: .zero)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCell", for: indexPath) as! GameCell
         cell.setUp(arr: arr, index: indexPath.row)
@@ -105,13 +108,15 @@ extension ViewController:UICollectionViewDataSource,UICollectionViewDelegate, UI
         return 0
     }
     
-    internal func newGameForPerson(pl: PositionInRoom, bx: Box) {
+    internal func newGameForPerson(pl: PositionInRoom, bx: Box, tr:EndGame) {
         countOfMoves = 0
         label.text = "\(countOfMoves)"
         player.positionX = pl.positionX
         box.positionX = bx.positionX
         player.positionY = pl.positionY
         box.positionY = bx.positionY
+        endGame.positionX = tr.positionX
+        endGame.positionY = tr.positionY
         self.arr = field
         self.collectionView.reloadData()
     }
@@ -119,11 +124,10 @@ extension ViewController:UICollectionViewDataSource,UICollectionViewDelegate, UI
         
         if box.positionX == endGame.positionX && box.positionY == endGame.positionY {
             HUD.flash(.labeledSuccess(title: "Win", subtitle: "New game started"), onView: self.view, delay: 1, completion: nil)
-            box.positionX = startingBox.positionX
-            box.positionY = startingBox.positionY
-            player.positionX = startingPlayer.positionX
-            player.positionY = startingPlayer.positionY
-            newGameForPerson(pl: startingPlayer, bx: startingBox)
+            let b = Box(positionX: Int.random(in: 1...9), positionY: Int.random(in: 1...9))
+            let p = PositionInRoom(positionX: Int.random(in: 1...9), positionY: Int.random(in: 1...9))
+            let endGame = EndGame(positionX: Int.random(in: 1...9), positionY: Int.random(in: 1...9))
+            newGameForPerson(pl: p, bx: b ,tr: endGame)
             
         }
         
@@ -135,7 +139,7 @@ extension ViewController:UICollectionViewDataSource,UICollectionViewDelegate, UI
 }
 
 protocol MethodGame {
-    func newGameForPerson(pl: PositionInRoom, bx: Box)
+    func newGameForPerson(pl: PositionInRoom, bx: Box , tr:EndGame)
 }
 
 

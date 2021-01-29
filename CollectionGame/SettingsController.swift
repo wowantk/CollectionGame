@@ -24,6 +24,8 @@ class SettingsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
     
     
@@ -60,11 +62,22 @@ class SettingsController: UIViewController {
             textException = SettingsEroor.textInCase.errorDescription
             throw SettingsEroor.positionAfterSize
         }
+        
+        if pX == bX && pY == bY || pX == tX && pY == tY || bX == tY && bY == tX {
+            textException = SettingsEroor.sameData.errorDescription
+            throw SettingsEroor.sameData
+            
+        }
+        
+        if bX == 1 && bY == 1 || bY==1 && bX == room.width-1  || bX == 1 &&  bY == room.height-1 || bX == room.width-1 && bY == room.height-1{
+            textException = SettingsEroor.cornerData.errorDescription
+            throw SettingsEroor.cornerData
+            
+        }
         let  pl = PositionInRoom(positionX: pX, positionY: pY)
         let  bx = Box(positionX: bX, positionY: bY)
-        endGame.positionX = tX
-        endGame.positionY = tY
-        delegate?.newGameForPerson(pl: pl, bx:bx)
+        let endGame = EndGame(positionX: tX, positionY: tY)
+        delegate?.newGameForPerson(pl: pl, bx:bx, tr: endGame)
         self.dismiss(animated: true, completion: nil)
         
     }
@@ -74,6 +87,8 @@ class SettingsController: UIViewController {
 enum SettingsEroor:Error{
     case textInCase
     case positionAfterSize
+    case sameData
+    case cornerData
     
     var errorDescription:String {
         switch self {
@@ -81,7 +96,13 @@ enum SettingsEroor:Error{
             return "Your data after size of game fields"
         case.textInCase:
             return "You set text or wrong dimensions in options field"
+        case.sameData:
+            return "You set same data for box or target or player"
+        case.cornerData:
+            return "You set wrong data for box you can't play"
         }
+        
+        
         
     }
 }
