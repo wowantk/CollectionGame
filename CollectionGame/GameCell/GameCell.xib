@@ -16,9 +16,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qH-66-MlZ">
-                        <rect key="frame" x="9" y="30" width="41" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qH-66-MlZ">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -26,6 +25,12 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="5qH-66-MlZ" secondAttribute="trailing" id="495-FC-Ts5"/>
+                <constraint firstItem="5qH-66-MlZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9ku-cD-9I3"/>
+                <constraint firstAttribute="bottom" secondItem="5qH-66-MlZ" secondAttribute="bottom" id="WRv-Et-Ebf"/>
+                <constraint firstItem="5qH-66-MlZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="f9g-zo-DyM"/>
+            </constraints>
             <connections>
                 <outlet property="textlablel" destination="5qH-66-MlZ" id="DgX-dW-w6T"/>
             </connections>

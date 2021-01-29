@@ -7,7 +7,7 @@
 
 import UIKit
 import PKHUD
-class ViewController: UIViewController  , MethodGame{
+class ViewController: UIViewController, MethodGame {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,7 +22,7 @@ class ViewController: UIViewController  , MethodGame{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "test", let vc = segue.destination as? SettingsController{
             vc.modalPresentationStyle = .fullScreen
-    vc.delegate = self
+            vc.delegate = self
         }
     }
     
@@ -82,6 +82,9 @@ extension ViewController:UICollectionViewDataSource,UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let c = UICollectionViewCell(frame: .zero)
+//        c.contentView = UILabel(frame: .zero)
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCell", for: indexPath) as! GameCell
         cell.setUp(arr: arr, index: indexPath.row)
         return cell
@@ -112,7 +115,7 @@ extension ViewController:UICollectionViewDataSource,UICollectionViewDelegate, UI
         self.arr = field
         self.collectionView.reloadData()
     }
-   private  func checkWin()->Void{
+    private  func checkWin()->Void{
         
         if box.positionX == endGame.positionX && box.positionY == endGame.positionY {
             HUD.flash(.labeledSuccess(title: "Win", subtitle: "New game started"), onView: self.view, delay: 1, completion: nil)
@@ -121,9 +124,9 @@ extension ViewController:UICollectionViewDataSource,UICollectionViewDelegate, UI
             player.positionX = startingPlayer.positionX
             player.positionY = startingPlayer.positionY
             newGameForPerson(pl: startingPlayer, bx: startingBox)
-
+            
         }
-    
+        
     }
     
     
@@ -135,9 +138,9 @@ protocol MethodGame {
     func newGameForPerson(pl: PositionInRoom, bx: Box)
 }
 
-    
-    
-    
-    
+
+
+
+
 
 
